@@ -37,7 +37,7 @@ class SevenDate(object):
                                          self.day)
         return value
 
-def seven_date(input_date, birth_date):
+def seven_date(input_date, birth_date=datetime.date(1988, 6, 23)):
     """Return date in 777-calendar format for a given date and birthday.
     """
     # We calculate year.  If input date is after birthday in its year, then it's difference between input year and birth date year.  Otherwise it's the difference in years minus one.
