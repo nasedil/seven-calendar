@@ -1,6 +1,11 @@
 # My own calendar system
 
-Work in progress now...
+Work is in the earliest stage of development.
+
+TODO list:
+ * What to do with dates before birth date?
+ * How to handle days after death?
+ * factory methods?
 
 ## Short notes
 
