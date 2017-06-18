@@ -1,0 +1,12 @@
+#!/usr/bin/python
+import datetime
+
+import sevencalendar
+
+def main():
+    """Helper tool for sever-calendar, prints date of today."""
+    today = datetime.date.today()
+    print(sevencalendar.seven_date(today))
+
+if __name__ == '__main__':
+    main()
