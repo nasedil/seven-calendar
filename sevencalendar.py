@@ -24,6 +24,10 @@ class SevenDate(object):
         self.week = week
         self.day = day
 
+    def __repr__(self):
+        """Return string representation of the object."""
+        return '{} -> {}-{}-{}-{}'.format(self.birth_date, self.year, self.meriod, self.week, self.day)
+
     def __str__(self):
         """Convert to string."""
         if self.week is None:
