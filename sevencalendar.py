@@ -72,3 +72,20 @@ class SevenDate(object):
         # Now create 777-calendar object.
         seven_date = SevenDate(birth_date, year, meriod, week, day)
         return seven_date
+
+    def to_date(self):
+        """Convert to traditional date."""
+        # We add years to birth date.
+        d = datetime.date(self.birth_date.year+self.year, self.birth_date.month, self.birth_date.day)
+        # And then add meriods, weeks and days up to required date.
+        if self.meriod == 0:
+            d += datetime.timedelta(days=self.day)
+        else:
+            zero_meriod_days = 1 + 7 + 7 - d.isoweekday()
+            d += datetime.timedelta(days=zero_meriod_days)
+            d += datetime.timedelta(days=49*(min(self.meriod, 7)-1))
+            if self.meriod < 8:
+                d += datetime.timedelta(days=7*(self.week-1)+self.day-1)
+            else:
+                d += datetime.timedelta(days=self.day-1)
+        return d
