@@ -41,33 +41,34 @@ class SevenDate(object):
                                          self.day)
         return value
 
-def seven_date(input_date, birth_date=datetime.date(1988, 6, 23)):
-    """Return date in 777-calendar format for a given date and birthday.
-    """
-    # We calculate year.  If input date is after birthday in its year, then it's difference between input year and birth date year.  Otherwise it's the difference in years minus one.
-    year = input_date.year - birth_date.year
-    if ((input_date.month < birth_date.month) or
-        (input_date.month == birth_date.month and input_date.day < birth_date.day)):
-        year -= 1
-    # Now we calculate meriod, week and day.  We create a reference date year.0.0 which is a last passed birthday.  And then we follow meriods from birthday until we find the one which includes input date.
-    reference_date = datetime.date(birth_date.year+year, birth_date.month, birth_date.day)
-    birthday_weekday = reference_date.isoweekday()
-    zero_meriod_days = 1 + 7 + 7 - birthday_weekday
-    meriod = 0
-    week = None
-    if (reference_date + datetime.timedelta(days=zero_meriod_days) > input_date):
-        day = (input_date - reference_date).days
-    else:
-        reference_date += datetime.timedelta(days=zero_meriod_days)
-        meriod = 1
-        while reference_date + datetime.timedelta(days=49) <= input_date:
-            reference_date += datetime.timedelta(days=49)
-            meriod += 1
-        if meriod < 8:
-            week = (input_date - reference_date).days // 7 + 1
-            day = input_date.isoweekday()
+    @staticmethod
+    def from_date(input_date, birth_date=datetime.date(1988, 6, 23)):
+        """Return date in 777-calendar format for a given date and birthday.
+        """
+        # We calculate year.  If input date is after birthday in its year, then it's difference between input year and birth date year.  Otherwise it's the difference in years minus one.
+        year = input_date.year - birth_date.year
+        if ((input_date.month < birth_date.month) or
+            (input_date.month == birth_date.month and input_date.day < birth_date.day)):
+            year -= 1
+        # Now we calculate meriod, week and day.  We create a reference date year.0.0 which is a last passed birthday.  And then we follow meriods from birthday until we find the one which includes input date.
+        reference_date = datetime.date(birth_date.year+year, birth_date.month, birth_date.day)
+        birthday_weekday = reference_date.isoweekday()
+        zero_meriod_days = 1 + 7 + 7 - birthday_weekday
+        meriod = 0
+        week = None
+        if (reference_date + datetime.timedelta(days=zero_meriod_days) > input_date):
+            day = (input_date - reference_date).days
         else:
-            day = (input_date - reference_date).days + 1
-    # Now create 777-calendar object.
-    seven_date = SevenDate(birth_date, year, meriod, week, day)
-    return seven_date
+            reference_date += datetime.timedelta(days=zero_meriod_days)
+            meriod = 1
+            while reference_date + datetime.timedelta(days=49) <= input_date:
+                reference_date += datetime.timedelta(days=49)
+                meriod += 1
+            if meriod < 8:
+                week = (input_date - reference_date).days // 7 + 1
+                day = input_date.isoweekday()
+            else:
+                day = (input_date - reference_date).days + 1
+        # Now create 777-calendar object.
+        seven_date = SevenDate(birth_date, year, meriod, week, day)
+        return seven_date
