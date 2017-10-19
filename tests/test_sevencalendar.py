@@ -2,7 +2,7 @@ import datetime
 
 import pytest
 
-import sevencalendar
+import sevencal.sevencalendar as sevencalendar
 
 def test_seven_date():
     d = sevencalendar.SevenDate.from_date(datetime.date(2017, 7, 3), datetime.date(1988, 6, 23))

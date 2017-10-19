@@ -1,6 +1,6 @@
 import datetime
 
-import sevencalendar
+import sevencal.sevencalendar as sevencalendar
 
 def main():
     # A reference birth date would be the 23rd of June 1988.

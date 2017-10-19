@@ -1,7 +1,7 @@
 #!/usr/bin/python
 import datetime
 
-import sevencalendar
+import sevencal.sevencalendar as sevencalendar
 
 def main():
     """Helper tool for sever-calendar, prints date of today."""

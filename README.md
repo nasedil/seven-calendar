@@ -17,6 +17,7 @@ Work is in the earliest stage of development.
  * add coding guidelines
  * add development notes
  * add license
+ * make installable package
 
 ### Other stuff
  * make library in javascript (well, initially thought of making this is javascript, python version is just a coincidence, because I was too lazy for couple of years and forgot)
