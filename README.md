@@ -29,5 +29,8 @@ The project is licensed with the MIT license, you can find it in the [LICENSE](L
 
 ## Version history
 
+### v0.0.2 -- 2018-07-06
+ * Add method to parse from datetime and use it in command-line tool.
+
 ### v0.0.1 -- 2018-07-01 -- First versioned version.
  * Add command-line options in tool for date to parse and birth date.

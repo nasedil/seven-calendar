@@ -8,7 +8,7 @@ import sevencal.sevencalendar as sevencalendar
 def date_type(s):
     """Convert string to datetime.
     """
-    return datetime.datetime.strptime(s, '%Y-%m-%d').date()
+    return datetime.datetime.strptime(s, '%Y-%m-%d')
 
 def main():
     """Helper command-line tool for sever-calendar.."""
@@ -23,7 +23,7 @@ def main():
                         default=datetime.date(1988, 6, 23),
                         help='The reference (birth) date of the calendar (in format yyyy-mm-dd)')
     args = parser.parse_args()
-    print(sevencalendar.SevenDate.from_date(args.date, birth_date=args.birth_date))
+    print(sevencalendar.SevenDate.from_datetime(args.date, birth_date=args.birth_date))
 
 if __name__ == '__main__':
     main()
