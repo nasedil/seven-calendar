@@ -16,7 +16,7 @@ def main():
                             formatter_class=ArgumentDefaultsHelpFormatter)
     parser.add_argument('-d', '--date',
                         type=date_type,
-                        default=datetime.date.today(),
+                        default=datetime.datetime.now(),
                         help='The date to convert (in format yyyy-mm-dd)')
     parser.add_argument('-b', '--birth-date',
                         type=date_type,

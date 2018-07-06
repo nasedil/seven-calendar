@@ -73,6 +73,15 @@ class SevenDate(object):
         seven_date = SevenDate(birth_date, year, meriod, week, day)
         return seven_date
 
+    @staticmethod
+    def from_datetime(input_datetime, birth_date=datetime.date(1988, 6, 23), delta=datetime.timedelta(hours=3)):
+        """Return date in 777-calendar format for a given datetime and birthday, using delta to decite how much 777-calendar is shifted forward from regalar calendar.
+
+        The time part of the input datetime is used to shift previous 777-date a bit compared to a regular date forward.  That is done to account for late-night stay before sleep, which still means previous day in the person-centric 777-calendar.
+        """
+        adjusted_datetime = (input_datetime - delta).date()
+        return SevenDate.from_date(adjusted_datetime, birth_date)
+
     def to_date(self):
         """Convert to traditional date."""
         # We add years to birth date.
