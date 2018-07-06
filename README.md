@@ -25,7 +25,7 @@ Sometimes I use a system to write a date with origin as my date of birth.  So I 
 
 ## License
 
-The project is licensed with the MIT license, you can find it in the [LICENSE.md](LICENSE.md) file.
+The project is licensed with the MIT license, you can find it in the [LICENSE](LICENSE) file.
 
 ## Version history
 
