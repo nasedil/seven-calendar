@@ -29,6 +29,11 @@ The project is licensed with the MIT license, you can find it in the [LICENSE](L
 
 ## Version history
 
+### v0.0.3 -- 2018-07-10
+ * Add more tests.
+ * Add more examples in explanation.
+ * Add offset argument in command-line tool.
+
 ### v0.0.2 -- 2018-07-06
  * Add method to parse from datetime and use it in command-line tool.
 

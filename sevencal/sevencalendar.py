@@ -8,6 +8,8 @@ The format is the following.  It depends on birth date.  In the following exampl
  * Meriod is a kind of month that in general case contains 7 weeks of 7 days.  There are special cases for 21 or 28 days around the reference birthday (mostly 21 days, but once in a while 28).  So birthday and 7 days after birthday are of meriod 0, and also days till the rest of the week.  That means meriod 0 may contain 8 to 14 days.  Then, days before birthday are of meriod 8, which may have from 8 to 14 days.  The remaining 343 days between meriod 0 and meriod 8 in a year are regular meriods, each having 49 days, and named from 1 to 7.
  * Regular meriods have weeks, named from 1 to 7.  In special meriods there are no weeks.
  * Day in regular meriod is the same as days of the week in the traditional calendar:  Monday is day 1 and Sunday is day 7.  In meriod 8 days are counted from 1, in meriod 0 -- from 0.
+ * Birthday is the first day of the year (1995-06-23 has date 7.0.0).
+ * Dates before birth have negative years: 1985-07-20 is -3.1.3.5.
 """
 
 import datetime
