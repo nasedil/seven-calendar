@@ -1,10 +1,20 @@
 # My own calendar system
 
-Work is in the earliest stage of development.
+*Work is in the earliest stage of development.*
+
+## Explanation
+
+This library provides tools to work with the person-centric calendar (which I currently call 777-calendar) that I have invented to use for various purposes and for fun.  The tools help to easily convert dates between Gregorian and 777-calendar.
+
+The main ideas of this calendar are:
+ * It's epoch is a person's birth date, and year changes happen on birthday.
+ * It has 7 months (currently called meriods), every such meriod has 7 weeks, and every week has 7 days.
+ * These 49 weeks of the calendar share days of the week with the Gregorian date, while remaining 22 or 23 days of the year are near the birthday.
+ * The date is written as <year>.<meriod>.<week>.<day> (such as 29.2.5.1) or as <year>.<meriod>.<day> (such as 29.8.3, for days near birthday).
+
+Exact calendar rules are described in [sevencal/sevencalendar.py](sevencal/sevencalendar.py).
 
 ## TODO list:
-### Calendar itself
- * Add calendar description
 ### The library
  * Support both python 2 and python 3 and test both with test script
  * have better tests
