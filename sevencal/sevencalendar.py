@@ -10,6 +10,7 @@ The format is the following.  It depends on birth date.  In the following exampl
  * Day in regular meriod is the same as days of the week in the traditional calendar:  Monday is day 1 and Sunday is day 7.  In meriod 8 days are counted from 1, in meriod 0 -- from 0.
  * Birthday is the first day of the year (1995-06-23 has date 7.0.0).
  * Dates before birth have negative years: 1985-07-20 is -3.1.3.5.
+ * Not only a birth date can be used as a reference point, but any other date of some importance.  That way, we can represent some date in several ways, one relative to a birth day, and one relative to some other day (say, day of death, or some important life event).
 """
 
 import datetime

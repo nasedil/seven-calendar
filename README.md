@@ -4,8 +4,6 @@ Work is in the earliest stage of development.
 
 ## TODO list:
 ### Calendar itself
- * What to do with dates before birth date?
- * How to handle days after death?
  * Add calendar description
 ### The library
  * Support both python 2 and python 3 and test both with test script
