@@ -9,7 +9,8 @@ def main():
     some_date = datetime.date(2016, 6, 23)
     print("All days for a year:")
     for i in range(365):
-        print('{} -> {}'.format(some_date, sevencalendar.SevenDate.from_date(some_date, birth_date)))
+        seven_date = sevencalendar.SevenDate.from_date(some_date, birth_date)
+        print('{} -> {} -> {}'.format(some_date, seven_date, seven_date.to_date()))
         some_date += datetime.timedelta(days=1)
     # Now let's print all first days of a meriod for all meriods in all years up to 34.
     print('All first days of meriods:')
@@ -19,6 +20,9 @@ def main():
             d.year = year
             d.meriod = meriod
             print('{} -> {}'.format(d, d.to_date()))
+    # And print number of days for each meriod of the year 30.
+    for meriod in range(0, 9):
+        print('{} -> {}'.format(meriod, sevencalendar.SevenDate.days_in_meriod(30, meriod)))
 
 if __name__ == '__main__':
     main()

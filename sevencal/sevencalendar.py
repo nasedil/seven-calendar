@@ -95,9 +95,28 @@ class SevenDate(object):
         else:
             zero_meriod_days = 1 + 7 + 7 - d.isoweekday()
             d += datetime.timedelta(days=zero_meriod_days)
-            d += datetime.timedelta(days=49*(min(self.meriod, 7)-1))
+            d += datetime.timedelta(days=49*(self.meriod-1))
             if self.meriod < 8:
                 d += datetime.timedelta(days=7*(self.week-1)+self.day-1)
             else:
                 d += datetime.timedelta(days=self.day-1)
         return d
+
+    @staticmethod
+    def days_in_meriod(year, meriod, birth_date=datetime.date(1988, 6, 23)):
+        """Return number of days in a specific meriod of a 777-year.
+        """
+        if meriod == 0:
+            sd = SevenDate(birth_date, year, meriod, 0, 0)
+        elif meriod <= 7:
+            return 49
+        elif meriod == 8:
+            sd = SevenDate(birth_date, year, meriod, 0, 1)
+        else:
+            raise ValueError('Wrong value of meriod: {}; bust be from in range [0—8]'.format(meriod))
+        count = 0
+        while sd.meriod == meriod:
+            count += 1
+            rd = sd.to_date() + datetime.timedelta(days=1)
+            sd = SevenDate.from_date(rd, birth_date)
+        return count
