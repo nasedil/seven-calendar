@@ -1,3 +1,5 @@
+# -*- coding: UTF-8 -*-
+
 """
 Converts datetime to 777-calendar format.
 

@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# -*- coding: UTF-8 -*-
 from argparse import ArgumentDefaultsHelpFormatter
 from argparse import ArgumentParser
 import datetime

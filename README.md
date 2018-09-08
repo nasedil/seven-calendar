@@ -22,8 +22,6 @@ Exact calendar rules are described in [sevencal/sevencalendar.py](sevencal/seven
  * add alternative __str__ methods
  * add coding guidelines
  * add development notes
- * add functions
-    * number of days in 0 and 8 meriods in a given year
 
 ### Other stuff
  * make library in JavaScript (well, initially thought of making this is JavaScript, python version is just a coincidence, because I was too lazy for couple of years and forgot)
