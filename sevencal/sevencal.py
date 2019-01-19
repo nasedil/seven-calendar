@@ -12,7 +12,7 @@ def date_type(s):
     return datetime.datetime.strptime(s, '%Y-%m-%d').date()
 
 def main():
-    """Helper command-line tool for sever-calendar.."""
+    """Helper command-line tool for sever-calendar."""
     parser = ArgumentParser(description='777-calendar converter tool',
                             formatter_class=ArgumentDefaultsHelpFormatter)
     parser.add_argument('-d', '--date',
