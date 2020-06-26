@@ -7,11 +7,11 @@ The format is the following.  It depends on birth date.  In the following exampl
  * Date consists of four or three parts:  year, meriod, week and day.  Sometimes week is missing.
  * Date is written as following:  year.meriod.week.day or year.meriod.day (like 25.6.6.4 or 29.0.9).
  * Year shows an age of a person.  So for a date which is slightly after birthday the year value would be the same as age.  For example, date 1995-07-09 would have year value 7 in 777-calendar.
- * Meriod is a kind of month that in general case contains 7 weeks of 7 days.  There are special cases for 21 or 28 days around the reference birthday (mostly 21 days, but once in a while 28).  So birthday and 7 days after birthday are of meriod 0, and also days till the rest of the week.  That means meriod 0 may contain 8 to 14 days.  Then, days before birthday are of meriod 8, which may have from 8 to 14 days.  The remaining 343 days between meriod 0 and meriod 8 in a year are regular meriods, each having 49 days, and named from 1 to 7.
+ * Meriod is a kind of month that in general case contains 7 weeks of 7 days.  There are special cases for 21 or 28 days around the reference birthday (mostly 21 days, but once in a while 28).  So birthday and 7 days after birthday are of meriod 0, and also days till the rest of the week.  That means meriod 0 may contain 8 to 14 days.  Then, days before birthday are of meriod 8, which may have from 7 to 20 days.  The remaining 343 days between meriod 0 and meriod 8 in a year are regular meriods, each having 49 days, and named from 1 to 7.
  * Regular meriods have weeks, named from 1 to 7.  In special meriods there are no weeks.
  * Day in regular meriod is the same as days of the week in the traditional calendar:  Monday is day 1 and Sunday is day 7.  In meriod 8 days are counted from 1, in meriod 0 -- from 0.
  * Birthday is the first day of the year (1995-06-23 has date 7.0.0).
- * Dates before birth have negative years: 1985-07-20 is -3.1.3.5.
+ * Dates before birth have negative years: 1985-07-20 is −3.1.3.5.
  * Not only a birth date can be used as a reference point, but any other date of some importance.  That way, we can represent some date in several ways, one relative to a birth day, and one relative to some other day (say, day of death, or some important life event).
 """
 
@@ -57,7 +57,7 @@ class SevenDate(object):
             year -= 1
         # Now we calculate meriod, week and day.  We create a reference date year.0.0 which is a last passed birthday.  And then we follow meriods from birthday until we find the one which includes input date.
         reference_date = datetime.date(birth_date.year+year, birth_date.month, birth_date.day)
-        birthday_weekday = reference_date.isoweekday()
+        birthday_weekday = reference_date.isoweekday() # [1..7]
         zero_meriod_days = 1 + 7 + 7 - birthday_weekday
         meriod = 0
         week = None
