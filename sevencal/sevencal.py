@@ -27,11 +27,18 @@ def main():
                         type=float,
                         default=3.0,
                         help='The offset from the 00:00 time to count as provious daty (in hours, may be fractional)')
+    parser.add_argument('-n', '--name',
+                        action='store_true',
+                        help='whether the output should be Cyrillic name')
     args = parser.parse_args()
     if args.date is not None:
-        print(sevencalendar.SevenDate.from_date(args.date, birth_date=args.birth_date))
+        d = sevencalendar.SevenDate.from_date(args.date, birth_date=args.birth_date)
     else:
-        print(sevencalendar.SevenDate.from_datetime(datetime.datetime.now(), birth_date=args.birth_date, delta=datetime.timedelta(hours=args.offset)))
+        d = sevencalendar.SevenDate.from_datetime(datetime.datetime.now(), birth_date=args.birth_date, delta=datetime.timedelta(hours=args.offset))
+    if args.name:
+        print(d.cyrillic_name())
+    else:
+        print(d)
 
 if __name__ == '__main__':
     main()
