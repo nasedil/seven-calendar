@@ -1,6 +1,8 @@
 # -*- coding: UTF-8 -*-
 
 import datetime
+import locale
+locale.setlocale(locale.LC_ALL, "")
 
 import pytest
 
@@ -23,3 +25,14 @@ def test_seven_date():
         seven_date = sevencalendar.SevenDate.from_date(some_date)
         assert some_date == seven_date.to_date()
         some_date += datetime.timedelta(days=1)
+
+def test_cyrillic_name():
+    birthday = datetime.date(1988, 6, 23)
+    d = datetime.date(2021, 6, 22)
+    names = []
+    for i in range(500):
+        d = d + datetime.timedelta(days=1)
+        seven_date = sevencalendar.SevenDate.from_date(d, birthday)
+        names.append(seven_date.cyrillic_name())
+        print(d, d.isoweekday(), str(seven_date), seven_date.week, seven_date.cyrillic_name())
+    assert names == sorted(names, key=locale.strxfrm)

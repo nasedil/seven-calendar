@@ -17,6 +17,13 @@ The format is the following.  It depends on birth date.  In the following exampl
 
 import datetime
 
+LETTERS_SEVENYEAR = 'бвгдзклмнпрсфхцч' #TODO add шщ
+LETTERS_YEAR = 'аеоуыюя'
+LETTERS_MERIOD = 'бвдзмпсфх'
+LETTERS_WEEK = 'аеоуыюя'
+LETTERS_DAY = 'йлмнрхц'
+NAMED_YEARS = len(LETTERS_SEVENYEAR) * len (LETTERS_YEAR)
+
 class SevenDate(object):
     """777-calendar date object.
     """
@@ -35,7 +42,7 @@ class SevenDate(object):
 
     def __str__(self):
         """Convert to string."""
-        if self.week is None:
+        if self.meriod in {0, 8}:
             value = '{}.{}.{}'.format(self.year,
                                       self.meriod,
                                       self.day)
@@ -45,6 +52,37 @@ class SevenDate(object):
                                          self.week,
                                          self.day)
         return value
+
+    def day_of_week(self):
+        """Return day of the week."""
+        return self.to_date().isoweekday()
+
+    def cyrillic_name(self):
+        """Convert to cyrillic date name"""
+        name = ''
+        if self.year >= NAMED_YEARS*NAMED_YEARS:
+            return 'Жя'
+        elif self.year >= NAMED_YEARS:
+            name += 'жэ'
+        elif self.year < -NAMED_YEARS*NAMED_YEARS:
+            return 'Жё'
+        elif self.year < -NAMED_YEARS:
+            name += 'жо'
+        elif self.year < 0:
+            name += 'жу'
+        year = self.year
+        if year < 0:
+            year = -year
+        yearpart = ''
+        while year > 0:
+            i = year % NAMED_YEARS
+            year = year // NAMED_YEARS
+            yearpart = LETTERS_SEVENYEAR[i//7] + LETTERS_YEAR[i%7] + yearpart
+        name = name + yearpart
+        name += LETTERS_MERIOD[self.meriod]
+        name += LETTERS_WEEK[self.week-1]
+        name += LETTERS_DAY[self.day_of_week()-1]
+        return name.capitalize()
 
     @staticmethod
     def from_date(input_date, birth_date=datetime.date(1988, 6, 23)):
@@ -63,6 +101,7 @@ class SevenDate(object):
         week = None
         if (reference_date + datetime.timedelta(days=zero_meriod_days) > input_date):
             day = (input_date - reference_date).days
+            week = (day - (zero_meriod_days % 7)) // 7 + 2
         else:
             reference_date += datetime.timedelta(days=zero_meriod_days)
             meriod = 1
@@ -74,6 +113,7 @@ class SevenDate(object):
                 day = input_date.isoweekday()
             else:
                 day = (input_date - reference_date).days + 1
+                week = (input_date - reference_date).days // 7 + 1
         # Now create 777-calendar object.
         seven_date = SevenDate(birth_date, year, meriod, week, day)
         return seven_date
